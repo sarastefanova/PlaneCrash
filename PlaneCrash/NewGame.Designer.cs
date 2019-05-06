@@ -32,13 +32,14 @@
             // 
             // NewGame
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::PlaneCrash.Properties.Resources.backGround;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.MaximizeBox = false;
+            this.ClientSize = new System.Drawing.Size(600, 366);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "NewGame";
             this.Text = "NewGame";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.NewGame_KeyDown);
             this.ResumeLayout(false);
 
         }

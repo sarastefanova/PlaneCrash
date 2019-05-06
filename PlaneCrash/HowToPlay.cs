@@ -16,5 +16,10 @@ namespace PlaneCrash
         {
             InitializeComponent();
         }
+
+        private void HowToPlay_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
