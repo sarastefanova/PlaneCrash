@@ -44,10 +44,10 @@
             this.btnNewGame.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnNewGame.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnNewGame.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnNewGame.Location = new System.Drawing.Point(691, 327);
-            this.btnNewGame.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnNewGame.Location = new System.Drawing.Point(518, 266);
+            this.btnNewGame.Margin = new System.Windows.Forms.Padding(2);
             this.btnNewGame.Name = "btnNewGame";
-            this.btnNewGame.Size = new System.Drawing.Size(131, 32);
+            this.btnNewGame.Size = new System.Drawing.Size(98, 26);
             this.btnNewGame.TabIndex = 3;
             this.btnNewGame.Text = "New Game";
             this.btnNewGame.UseVisualStyleBackColor = false;
@@ -60,10 +60,10 @@
             this.btnInstructions.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnInstructions.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnInstructions.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnInstructions.Location = new System.Drawing.Point(691, 366);
-            this.btnInstructions.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnInstructions.Location = new System.Drawing.Point(518, 297);
+            this.btnInstructions.Margin = new System.Windows.Forms.Padding(2);
             this.btnInstructions.Name = "btnInstructions";
-            this.btnInstructions.Size = new System.Drawing.Size(131, 32);
+            this.btnInstructions.Size = new System.Drawing.Size(98, 26);
             this.btnInstructions.TabIndex = 4;
             this.btnInstructions.Text = "How to play";
             this.btnInstructions.UseVisualStyleBackColor = false;
@@ -76,10 +76,10 @@
             this.btnQuit.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnQuit.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnQuit.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnQuit.Location = new System.Drawing.Point(691, 402);
-            this.btnQuit.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnQuit.Location = new System.Drawing.Point(518, 327);
+            this.btnQuit.Margin = new System.Windows.Forms.Padding(2);
             this.btnQuit.Name = "btnQuit";
-            this.btnQuit.Size = new System.Drawing.Size(131, 32);
+            this.btnQuit.Size = new System.Drawing.Size(98, 26);
             this.btnQuit.TabIndex = 5;
             this.btnQuit.Text = "Quit game";
             this.btnQuit.UseVisualStyleBackColor = false;
@@ -103,28 +103,30 @@
             this.button1.ForeColor = System.Drawing.Color.Transparent;
             this.button1.ImageIndex = 1;
             this.button1.ImageList = this.imageList1;
-            this.button1.Location = new System.Drawing.Point(-1, 435);
+            this.button1.Location = new System.Drawing.Point(-1, 353);
+            this.button1.Margin = new System.Windows.Forms.Padding(2);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(49, 46);
+            this.button1.Size = new System.Drawing.Size(37, 37);
             this.button1.TabIndex = 6;
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.Button1_Click);
             // 
             // HomePage
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::PlaneCrash.Properties.Resources.Cover;
-            this.ClientSize = new System.Drawing.Size(937, 481);
+            this.ClientSize = new System.Drawing.Size(703, 391);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.btnQuit);
             this.Controls.Add(this.btnInstructions);
             this.Controls.Add(this.btnNewGame);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
-            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximizeBox = false;
             this.Name = "HomePage";
             this.Text = "Form1";
+            this.Activated += new System.EventHandler(this.HomePage_Activated);
             this.Load += new System.EventHandler(this.HomePage_Load);
             this.ResumeLayout(false);
 

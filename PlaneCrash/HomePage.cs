@@ -8,8 +8,8 @@ namespace PlaneCrash
 {
     public partial class HomePage : Form
     {
-        SoundPlayer simpleSound = new SoundPlayer(PlaneCrash.Properties.Resources.Menu);
-        bool isPlaying;
+        public SoundPlayer simpleSound = new SoundPlayer(PlaneCrash.Properties.Resources.Menu);
+        public bool isPlaying;
         
         
         public HomePage()
@@ -46,7 +46,7 @@ namespace PlaneCrash
 
         private void HomePage_Load(object sender, EventArgs e)
         {
-
+           
         }
 
         private void Button1_Click(object sender, EventArgs e)
@@ -61,6 +61,11 @@ namespace PlaneCrash
                 isPlaying = true;
             }
            
+        }
+
+        private void HomePage_Activated(object sender, EventArgs e)
+        {
+            simpleSound.Play();
         }
     }
 }
