@@ -16,6 +16,7 @@ namespace PlaneCrash
         {
             InitializeComponent();
             this.DoubleBuffered = true;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
         }
 
 

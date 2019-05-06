@@ -87,6 +87,7 @@
             this.Controls.Add(this.btnQuit);
             this.Controls.Add(this.btnInstructions);
             this.Controls.Add(this.btnNewGame);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "HomePage";
             this.Text = "Form1";
             this.ResumeLayout(false);

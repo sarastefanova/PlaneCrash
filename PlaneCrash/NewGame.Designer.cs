@@ -36,6 +36,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::PlaneCrash.Properties.Resources.backGround;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.MaximizeBox = false;
             this.Name = "NewGame";
             this.Text = "NewGame";
             this.ResumeLayout(false);
