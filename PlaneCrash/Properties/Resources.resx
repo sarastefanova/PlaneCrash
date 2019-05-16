@@ -133,15 +133,6 @@
   <data name="enemyPlane3" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\enemyPlane3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="MainPlane" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\MainPlane.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="MainPlaneLeft" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\MainPlaneLeft.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="MainPlaneRight" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\MainPlaneRight.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="speaker" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\speaker.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -156,5 +147,14 @@
   </data>
   <data name="sky" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\sky.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="MainPlane" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\MainPlane.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="MainPlaneLeft" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\MainPlaneLeft.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="MainPlaneRight" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\MainPlaneRight.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>
