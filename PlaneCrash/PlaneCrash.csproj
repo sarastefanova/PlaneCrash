@@ -58,6 +58,7 @@
     <Compile Include="HowToPlay.Designer.cs">
       <DependentUpon>HowToPlay.cs</DependentUpon>
     </Compile>
+    <Compile Include="MainHeroPlane.cs" />
     <Compile Include="NewGame.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -156,6 +157,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\sky.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\MainPlane.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\MainPlaneLeft.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\MainPlaneRight.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
