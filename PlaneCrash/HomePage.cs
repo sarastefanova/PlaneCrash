@@ -11,7 +11,6 @@ namespace PlaneCrash
         public SoundPlayer simpleSound = new SoundPlayer(PlaneCrash.Properties.Resources.Menu);
         public bool isPlaying;
         
-        
         public HomePage()
         {
             InitializeComponent();
@@ -19,7 +18,6 @@ namespace PlaneCrash
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             isPlaying = false;
             simpleSound.Play();
-
 
         }
 

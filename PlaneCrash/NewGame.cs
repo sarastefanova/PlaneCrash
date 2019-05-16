@@ -13,18 +13,27 @@ namespace PlaneCrash
 {
     public partial class NewGame : Form
     {
+        
         SoundPlayer simpleSound = new SoundPlayer(PlaneCrash.Properties.Resources.game);
         bool isPlaying;
+      
+        
+
 
         public NewGame()
         {
-            InitializeComponent();
+            InitializeComponent();            
+
             FormBorderStyle = FormBorderStyle.None;
             WindowState = FormWindowState.Maximized;
             TopMost = true;
 
             simpleSound.PlayLooping();
+
+         
         }
+
+      
 
         private void NewGame_KeyDown(object sender, KeyEventArgs e)
         {
@@ -49,5 +58,9 @@ namespace PlaneCrash
                 isPlaying = true;
             }
         }
+
+     
+
+       
     }
 }

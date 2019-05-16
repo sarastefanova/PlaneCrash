@@ -115,9 +115,6 @@
     <None Include="Resources\enemyPlane2.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\enemyPlane3.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\MainPlane.png" />
   </ItemGroup>
   <ItemGroup>
