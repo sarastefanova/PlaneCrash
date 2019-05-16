@@ -159,9 +159,7 @@
     <None Include="Resources\sky.jpg" />
   </ItemGroup>
   <ItemGroup>
-
     <None Include="Resources\enemyPlane3.png" />
-
     <None Include="Resources\MainPlane.jpg" />
   </ItemGroup>
   <ItemGroup>
@@ -169,7 +167,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\MainPlaneRight.jpg" />
-
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\LeftPlane.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Plane.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\RightPlane.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

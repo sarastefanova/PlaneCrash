@@ -33,11 +33,11 @@ namespace PlaneCrash
         {
             photos = photo;
             d = DIRECTION.up;
-            Planeleft = PlaneCrash.Properties.Resources.MainPlaneLeft;
+            Planeleft = PlaneCrash.Properties.Resources.LeftPlane;
             
 
-            Planeright = PlaneCrash.Properties.Resources.MainPlaneRight;
-            PlaneUpDown = PlaneCrash.Properties.Resources.MainPlane;
+            Planeright = PlaneCrash.Properties.Resources.RightPlane;
+            PlaneUpDown = PlaneCrash.Properties.Resources.Plane;
 
             life = 4;
 
