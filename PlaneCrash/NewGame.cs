@@ -21,6 +21,8 @@ namespace PlaneCrash
 
        
         public MainHeroPlane HeroPlane { get; set; }
+
+        public List<Enemies> enemies { get; set; } 
         public NewGame()
         {
 
@@ -37,15 +39,48 @@ namespace PlaneCrash
 
             
             HeroPlane = new MainHeroPlane(MainHeroPlane.PHOTOS.upDown);
+            enemies = new List<Enemies>();
 
             timer = new Timer();
             timer.Interval = 500;
             timer.Tick += new EventHandler(Timer1_Tick);
             timer.Start();
 
+            
+            fillEnemiesList();
+
         }
 
       
+        public void fillEnemiesList()
+        {
+            Random r = new Random();
+            for(int i=enemies.Count;i<12;i++)
+            {
+                int y = -Properties.Resources.enemyPlane1.Height;
+                int x = r.Next(-Properties.Resources.enemyPlane1.Width,(this.Width-Properties.Resources.enemyPlane1.Width));
+                //enemies.Add(new Enemies(x, y, r.Next(1,4)));
+                enemies.Add(new Enemies(r.Next(this.ClientSize.Width), -r.Next(1000), r.Next(1, 4)));
+            }
+        }
+
+        public void MoveEnemies()
+        {
+            for(int i=0;i<enemies.Count;i++)
+            {
+                enemies[i].Move();
+                if(!enemies[i].EnemyOnEgde(this.ClientSize.Height))
+                {
+                    enemies.Remove(enemies[i]);
+                }
+                
+            }
+           
+            if(enemies.Count < 12 )
+            {
+                fillEnemiesList();
+            }
+        }
 
         private void NewGame_KeyDown(object sender, KeyEventArgs e)
         {
@@ -103,6 +138,7 @@ namespace PlaneCrash
         {
             HeroPlane.Move(this.ClientSize.Width,this.ClientSize.Height);
             //Hero.Move();
+            MoveEnemies();
             Invalidate();
         }
 
@@ -110,6 +146,11 @@ namespace PlaneCrash
         {
         
             HeroPlane.Draw(e.Graphics);
+
+            foreach(Enemies en in enemies)
+            {
+                en.Draw(e.Graphics);
+            }
         }
 
     }
