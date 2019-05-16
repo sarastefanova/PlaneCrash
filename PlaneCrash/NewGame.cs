@@ -16,13 +16,18 @@ namespace PlaneCrash
         
         SoundPlayer simpleSound = new SoundPlayer(PlaneCrash.Properties.Resources.game);
         bool isPlaying;
-      
-        
+    
+        Timer timer;
 
-
+       
+        public MainHeroPlane HeroPlane { get; set; }
         public NewGame()
         {
-            InitializeComponent();            
+
+         
+            InitializeComponent();
+            this.DoubleBuffered = true;
+
 
             FormBorderStyle = FormBorderStyle.None;
             WindowState = FormWindowState.Maximized;
@@ -30,7 +35,14 @@ namespace PlaneCrash
 
             simpleSound.PlayLooping();
 
-         
+            
+            HeroPlane = new MainHeroPlane(MainHeroPlane.PHOTOS.upDown);
+
+            timer = new Timer();
+            timer.Interval = 500;
+            timer.Tick += new EventHandler(Timer1_Tick);
+            timer.Start();
+
         }
 
       
@@ -42,6 +54,28 @@ namespace PlaneCrash
                 simpleSound.Stop();
                 this.Close();
                 
+            }
+
+
+            if (Keys.Left == e.KeyCode)
+            {
+                HeroPlane.ChangeDirection(MainHeroPlane.DIRECTION.left);
+            }
+
+            if (Keys.Right == e.KeyCode)
+            {
+                HeroPlane.ChangeDirection(MainHeroPlane.DIRECTION.right);
+
+            }
+
+            if (Keys.Up == e.KeyCode)
+            {
+                HeroPlane.ChangeDirection(MainHeroPlane.DIRECTION.up);
+            }
+
+            if (Keys.Down == e.KeyCode)
+            {
+                HeroPlane.ChangeDirection(MainHeroPlane.DIRECTION.down);
             }
         }
 
@@ -59,8 +93,24 @@ namespace PlaneCrash
             }
         }
 
-     
 
-       
+        private void NewGame_KeyUp(object sender, KeyEventArgs e)
+        {
+           
+        }
+
+        private void Timer1_Tick(object sender, EventArgs e)
+        {
+            HeroPlane.Move(this.ClientSize.Width,this.ClientSize.Height);
+            //Hero.Move();
+            Invalidate();
+        }
+
+        private void NewGame_Paint(object sender, PaintEventArgs e)
+        {
+        
+            HeroPlane.Draw(e.Graphics);
+        }
+
     }
 }
