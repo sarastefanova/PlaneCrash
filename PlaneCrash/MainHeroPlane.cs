@@ -24,6 +24,10 @@ namespace PlaneCrash
         public Image Planeleft{ get; set; }
         public Image Planeright { get; set; }
         public Image PlaneUpDown { get; set; }
+        public bool GameOver { get; set; }
+
+        public int widthHero { get; set; }
+        public int heightHero { get; set; }
 
         public PHOTOS photos { get; set; }
         public DIRECTION d { get; set; }
@@ -39,13 +43,14 @@ namespace PlaneCrash
             Planeright = PlaneCrash.Properties.Resources.RightPlane;
             PlaneUpDown = PlaneCrash.Properties.Resources.Plane;
 
-            life = 4;
+            life = 3;
 
             X = 500;
             Y = 500;
 
-            
-
+            GameOver = false;
+            widthHero = PlaneCrash.Properties.Resources.Plane.Size.Width;
+            heightHero = PlaneCrash.Properties.Resources.Plane.Size.Height;
             brzina = 15;
         }
 

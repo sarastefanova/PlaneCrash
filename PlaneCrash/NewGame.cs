@@ -31,13 +31,19 @@ namespace PlaneCrash
             this.DoubleBuffered = true;
 
 
+            StartGame();
+
+        }
+
+        public void StartGame()
+        {
             FormBorderStyle = FormBorderStyle.None;
             WindowState = FormWindowState.Maximized;
             TopMost = true;
 
             simpleSound.PlayLooping();
 
-            
+
             HeroPlane = new MainHeroPlane(MainHeroPlane.PHOTOS.upDown);
             enemies = new List<Enemies>();
 
@@ -46,20 +52,17 @@ namespace PlaneCrash
             timer.Tick += new EventHandler(Timer1_Tick);
             timer.Start();
 
-            
-            fillEnemiesList();
 
+            fillEnemiesList();
         }
 
       
         public void fillEnemiesList()
         {
             Random r = new Random();
-            for(int i=enemies.Count;i<12;i++)
+            for(int i=enemies.Count;i<15;i++)
             {
-                int y = -Properties.Resources.enemyPlane1.Height;
-                int x = r.Next(-Properties.Resources.enemyPlane1.Width,(this.Width-Properties.Resources.enemyPlane1.Width));
-                //enemies.Add(new Enemies(x, y, r.Next(1,4)));
+               
                 enemies.Add(new Enemies(r.Next(this.ClientSize.Width), -r.Next(1000), r.Next(1, 4)));
             }
         }
@@ -73,13 +76,56 @@ namespace PlaneCrash
                 {
                     enemies.Remove(enemies[i]);
                 }
+
+                if (Crash(enemies[i]))
+                {
+                    enemies[i].isHit = true;
+
+                    if (HeroPlane.life == 0)
+                    {
+                        HeroPlane.GameOver = true;
+                        
+                    }
+                    else 
+                    {
+                        HeroPlane.life--;
+                    }
+
+                }
                 
             }
+
+            for(var i = 0; i < enemies.Count; i++)
+            {
+                if (enemies[i].isHit)
+                {
+                    enemies.Remove(enemies[i]);
+                }
+
+            }
            
-            if(enemies.Count < 12 )
+            if(enemies.Count < 15 )
             {
                 fillEnemiesList();
             }
+        }
+
+
+        public bool Crash(Enemies en)
+        {
+           
+            Rectangle R1 = new Rectangle(HeroPlane.X, HeroPlane.Y, HeroPlane.widthHero, HeroPlane.heightHero);
+             Rectangle R2 = new Rectangle(en.X, en.Y, en.widthEnemy, en.widthEnemy);
+
+            return (R2.X <R1.X + R1.Width) &&
+                        (R1.X < (R2.X + R2.Width)) &&
+                        (R2.Y < R1.Y + R1.Height) &&
+                        (R1.Y < R2.Y + R2.Height);
+        }
+
+        public int distance(Point x,Point y)
+        {
+            return ((x.X - y.Y) * (x.X - y.Y) + (x.Y - y.Y) * (x.Y - y.Y));
         }
 
         private void NewGame_KeyDown(object sender, KeyEventArgs e)
@@ -134,12 +180,36 @@ namespace PlaneCrash
            
         }
 
+        public void GameOver()
+        {
+            
+            if(MessageBox.Show("New game?","Game over", MessageBoxButtons.YesNo) == DialogResult.OK)
+            {
+                StartGame();
+            }
+            else
+            {
+                this.Close();
+            }
+        }
+
         private void Timer1_Tick(object sender, EventArgs e)
         {
-            HeroPlane.Move(this.ClientSize.Width,this.ClientSize.Height);
+            HeroPlane.Move(this.ClientSize.Width, this.ClientSize.Height);
             //Hero.Move();
             MoveEnemies();
-            Invalidate();
+
+
+           
+            if (HeroPlane.GameOver)
+            {
+                timer.Enabled = false;
+                //timer.Stop();
+                //GameOver();
+            }
+           
+
+            Invalidate(true);
         }
 
         private void NewGame_Paint(object sender, PaintEventArgs e)
