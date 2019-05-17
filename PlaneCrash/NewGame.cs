@@ -191,7 +191,7 @@ namespace PlaneCrash
             {
                 HeroPlane.ChangeDirection(MainHeroPlane.DIRECTION.down);
             }
-
+            HeroPlane.Move(this.ClientSize.Width, this.ClientSize.Height);
 
             if (e.KeyCode == Keys.P)
             {
@@ -254,7 +254,7 @@ namespace PlaneCrash
 
         private void Timer1_Tick(object sender, EventArgs e)
         {
-            HeroPlane.Move(this.ClientSize.Width, this.ClientSize.Height);
+            //HeroPlane.Move(this.ClientSize.Width, this.ClientSize.Height);
             
             MoveEnemies();
 
