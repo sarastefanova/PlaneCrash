@@ -23,7 +23,7 @@ namespace PlaneCrash
         {
             this.X = x;
             this.Y = y;
-            speed = 20;
+            speed = 15;
             if(imgIndex == 1)
             {
                 enemy = PlaneCrash.Properties.Resources.enemyPlane1;
