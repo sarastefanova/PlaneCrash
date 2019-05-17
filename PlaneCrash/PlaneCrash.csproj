@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Clouds.cs" />
     <Compile Include="Enemies.cs" />
     <Compile Include="HomePage.cs">
       <SubType>Form</SubType>
@@ -177,6 +178,18 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\RightPlane.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cloud2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cloud1.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\claud1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\heart.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -23,6 +23,8 @@ namespace PlaneCrash
         public MainHeroPlane HeroPlane { get; set; }
 
         public List<Enemies> enemies { get; set; } 
+
+        public List<Clouds> clouds { get; set; }
         public NewGame()
         {
 
@@ -46,6 +48,7 @@ namespace PlaneCrash
 
             HeroPlane = new MainHeroPlane(MainHeroPlane.PHOTOS.upDown);
             enemies = new List<Enemies>();
+            clouds = new List<Clouds>();
 
             timer = new Timer();
             timer.Interval = 500;
@@ -54,16 +57,47 @@ namespace PlaneCrash
 
 
             fillEnemiesList();
+
+           
+            fillCloudList();
         }
 
       
         public void fillEnemiesList()
         {
             Random r = new Random();
-            for(int i=enemies.Count;i<15;i++)
+            for(int i=enemies.Count;i<10;i++)
             {
                
                 enemies.Add(new Enemies(r.Next(this.ClientSize.Width), -r.Next(1000), r.Next(1, 4)));
+            }
+        }
+
+        public void fillCloudList()
+        {
+            Random random = new Random();
+            for (int i = clouds.Count; i < 5; i++)
+            {
+
+                clouds.Add(new Clouds(random.Next(900), -random.Next(1000), random.Next(1,3)));
+            }
+        }
+
+        public void MoveClouds()
+        {
+            for (int i = 0; i < clouds.Count; i++)
+            {
+                clouds[i].Move();
+                if (!clouds[i].CloudOnEgde(this.ClientSize.Height))
+                {
+                    clouds.Remove(clouds[i]);
+                }
+
+            }
+
+            if (clouds.Count < 5)
+            {
+                fillCloudList();
             }
         }
 
@@ -104,7 +138,7 @@ namespace PlaneCrash
 
             }
            
-            if(enemies.Count < 15 )
+            if(enemies.Count < 10 )
             {
                 fillEnemiesList();
             }
@@ -123,10 +157,7 @@ namespace PlaneCrash
                         (R1.Y < R2.Y + R2.Height);
         }
 
-        public int distance(Point x,Point y)
-        {
-            return ((x.X - y.Y) * (x.X - y.Y) + (x.Y - y.Y) * (x.Y - y.Y));
-        }
+       
 
         private void NewGame_KeyDown(object sender, KeyEventArgs e)
         {
@@ -196,9 +227,10 @@ namespace PlaneCrash
         private void Timer1_Tick(object sender, EventArgs e)
         {
             HeroPlane.Move(this.ClientSize.Width, this.ClientSize.Height);
-            //Hero.Move();
+            
             MoveEnemies();
 
+            MoveClouds();
 
            
             if (HeroPlane.GameOver)
@@ -207,7 +239,8 @@ namespace PlaneCrash
                 //timer.Stop();
                 //GameOver();
             }
-           
+
+            lblLifes.Text = HeroPlane.life.ToString();
 
             Invalidate(true);
         }
@@ -221,7 +254,13 @@ namespace PlaneCrash
             {
                 en.Draw(e.Graphics);
             }
+
+            foreach(Clouds c in clouds)
+            {
+                c.Draw(e.Graphics);
+            }
         }
 
+        
     }
 }
