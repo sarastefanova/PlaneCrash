@@ -25,6 +25,7 @@ namespace PlaneCrash
         public List<Enemies> enemies { get; set; } 
 
         public List<Clouds> clouds { get; set; }
+        public bool isStarted { get; set; }
         public NewGame()
         {
 
@@ -49,12 +50,13 @@ namespace PlaneCrash
             HeroPlane = new MainHeroPlane(MainHeroPlane.PHOTOS.upDown);
             enemies = new List<Enemies>();
             clouds = new List<Clouds>();
+            
 
-            timer = new Timer();
-            timer.Interval = 500;
-            timer.Tick += new EventHandler(Timer1_Tick);
-            timer.Start();
-
+           // timer = new Timer();
+            //timer.Interval = 500;
+            //timer.Tick += new EventHandler(Timer1_Tick);
+            timer1.Start();
+            isStarted = false;
 
             fillEnemiesList();
 
@@ -189,6 +191,32 @@ namespace PlaneCrash
             {
                 HeroPlane.ChangeDirection(MainHeroPlane.DIRECTION.down);
             }
+
+
+            if (e.KeyCode == Keys.P)
+            {
+                if (isStarted)
+                {
+                    isStarted = false;
+                }
+                else
+                {
+                    isStarted = true;
+                }
+
+                if (isStarted)
+                {
+                    
+                    timer1.Stop();
+                    //timer1.Enabled = false;
+                }
+                else
+                {
+                    
+                    timer1.Start();
+                  // timer1.Enabled = true;
+                }
+            }
         }
 
         private void toolStripSplitButton1_ButtonClick(object sender, EventArgs e)
@@ -214,7 +242,7 @@ namespace PlaneCrash
         public void GameOver()
         {
             
-            if(MessageBox.Show("New game?","Game over", MessageBoxButtons.YesNo) == DialogResult.OK)
+            if(MessageBox.Show("New game?","Game over", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 StartGame();
             }
@@ -235,9 +263,9 @@ namespace PlaneCrash
            
             if (HeroPlane.GameOver)
             {
-                timer.Enabled = false;
-                //timer.Stop();
-                //GameOver();
+               // timer.Enabled = false;
+                timer1.Stop();
+                GameOver();
             }
 
             lblLifes.Text = HeroPlane.life.ToString();
@@ -261,6 +289,9 @@ namespace PlaneCrash
             }
         }
 
+      
+
         
+
     }
 }

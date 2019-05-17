@@ -51,7 +51,7 @@ namespace PlaneCrash
             GameOver = false;
             widthHero = PlaneCrash.Properties.Resources.Plane.Size.Width;
             heightHero = PlaneCrash.Properties.Resources.Plane.Size.Height;
-            brzina = 15;
+            brzina = 10;
         }
 
         public void Draw(Graphics g)
