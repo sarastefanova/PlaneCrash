@@ -17,22 +17,19 @@ namespace PlaneCrash
         SoundPlayer simpleSound = new SoundPlayer(PlaneCrash.Properties.Resources.game);
         bool isPlaying;
     
-        Timer timer;
-
-       
         public MainHeroPlane HeroPlane { get; set; }
 
         public List<Enemies> enemies { get; set; } 
 
         public List<Clouds> clouds { get; set; }
         public bool isStarted { get; set; }
+
         public NewGame()
         {
 
          
             InitializeComponent();
             this.DoubleBuffered = true;
-
 
             StartGame();
 
@@ -50,16 +47,12 @@ namespace PlaneCrash
             HeroPlane = new MainHeroPlane(MainHeroPlane.PHOTOS.upDown);
             enemies = new List<Enemies>();
             clouds = new List<Clouds>();
-            
+          
 
-           // timer = new Timer();
-            //timer.Interval = 500;
-            //timer.Tick += new EventHandler(Timer1_Tick);
             timer1.Start();
             isStarted = false;
 
             fillEnemiesList();
-
            
             fillCloudList();
         }
@@ -120,11 +113,19 @@ namespace PlaneCrash
                     if (HeroPlane.life == 0)
                     {
                         HeroPlane.GameOver = true;
-                        
+                        GameOver();
+                      
                     }
                     else 
                     {
                         HeroPlane.life--;
+                        lblLifes.Text = HeroPlane.life.ToString();
+                        if (HeroPlane.life == 0)
+                        {
+                        HeroPlane.GameOver = true;
+                        GameOver();
+                      
+                        }
                     }
 
                 }
@@ -150,13 +151,13 @@ namespace PlaneCrash
         public bool Crash(Enemies en)
         {
            
-            Rectangle R1 = new Rectangle(HeroPlane.X, HeroPlane.Y, HeroPlane.widthHero, HeroPlane.heightHero);
-             Rectangle R2 = new Rectangle(en.X, en.Y, en.widthEnemy, en.widthEnemy);
+            Rectangle R1 = new Rectangle(HeroPlane.X, HeroPlane.Y, HeroPlane.widthHero-50, HeroPlane.heightHero-30);
+             Rectangle R2 = new Rectangle(en.X, en.Y, en.widthEnemy-50, en.heightEnemy-30);
 
-            return (R2.X <R1.X + R1.Width) &&
+            return (R2.X <(R1.X + R1.Width)) &&
                         (R1.X < (R2.X + R2.Width)) &&
-                        (R2.Y < R1.Y + R1.Height) &&
-                        (R1.Y < R2.Y + R2.Height);
+                        (R2.Y < (R1.Y + R1.Height)) &&
+                        (R1.Y < (R2.Y + R2.Height));
         }
 
        
@@ -192,6 +193,7 @@ namespace PlaneCrash
                 HeroPlane.ChangeDirection(MainHeroPlane.DIRECTION.down);
             }
 
+            HeroPlane.Move(this.ClientSize.Width, this.ClientSize.Height);
 
             if (e.KeyCode == Keys.P)
             {
@@ -208,13 +210,13 @@ namespace PlaneCrash
                 {
                     
                     timer1.Stop();
-                    //timer1.Enabled = false;
+                  
                 }
                 else
                 {
                     
                     timer1.Start();
-                  // timer1.Enabled = true;
+                  
                 }
             }
         }
@@ -234,15 +236,10 @@ namespace PlaneCrash
         }
 
 
-        private void NewGame_KeyUp(object sender, KeyEventArgs e)
-        {
-           
-        }
-
         public void GameOver()
         {
-            
-            if(MessageBox.Show("New game?","Game over", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            timer1.Stop();
+            if (MessageBox.Show("New game?","Game over", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 StartGame();
             }
@@ -254,20 +251,10 @@ namespace PlaneCrash
 
         private void Timer1_Tick(object sender, EventArgs e)
         {
-            HeroPlane.Move(this.ClientSize.Width, this.ClientSize.Height);
-            
-            MoveEnemies();
-
-            MoveClouds();
-
            
-            if (HeroPlane.GameOver)
-            {
-               // timer.Enabled = false;
-                timer1.Stop();
-                GameOver();
-            }
-
+            MoveEnemies();
+            MoveClouds();
+          
             lblLifes.Text = HeroPlane.life.ToString();
 
             Invalidate(true);
@@ -275,23 +262,19 @@ namespace PlaneCrash
 
         private void NewGame_Paint(object sender, PaintEventArgs e)
         {
-        
+
             HeroPlane.Draw(e.Graphics);
 
-            foreach(Enemies en in enemies)
+            foreach (Enemies en in enemies)
             {
                 en.Draw(e.Graphics);
             }
 
-            foreach(Clouds c in clouds)
+            foreach (Clouds c in clouds)
             {
                 c.Draw(e.Graphics);
             }
         }
-
-      
-
-        
 
     }
 }
