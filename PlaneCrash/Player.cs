@@ -1,0 +1,36 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace PlaneCrash
+{
+    [Serializable]   
+    public class Player
+    {
+        public string Nickname { get; set; }
+        public int Score { get; set; }
+
+        public Player(string nickname, int score)
+        {
+            Nickname = nickname;
+            Score = score;
+        }
+
+        public void setScore(int score)
+        {
+
+            if(score > Score)
+            {
+                Score = score;
+            }
+
+        }
+
+        public override string ToString()
+        {
+            return string.Format("{0}:{1}", Nickname, Score);
+        }
+    }
+}

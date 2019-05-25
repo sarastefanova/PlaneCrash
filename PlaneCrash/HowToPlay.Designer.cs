@@ -42,7 +42,6 @@
             this.MaximizeBox = false;
             this.Name = "HowToPlay";
             this.Text = "HowToPlay";
-            this.Load += new System.EventHandler(this.HowToPlay_Load);
             this.ResumeLayout(false);
 
         }

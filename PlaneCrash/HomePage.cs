@@ -42,10 +42,7 @@ namespace PlaneCrash
             }
         }
 
-        private void HomePage_Load(object sender, EventArgs e)
-        {
-           
-        }
+    
 
         private void Button1_Click(object sender, EventArgs e)
         {
@@ -64,6 +61,13 @@ namespace PlaneCrash
         private void HomePage_Activated(object sender, EventArgs e)
         {
             simpleSound.Play();
+        }
+
+        private void btnScores_Click(object sender, EventArgs e)
+        {
+
+            Scores scores = new Scores();
+            scores.ShowDialog();
         }
     }
 }

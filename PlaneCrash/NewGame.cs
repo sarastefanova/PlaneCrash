@@ -2,9 +2,13 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Media;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -13,10 +17,15 @@ namespace PlaneCrash
 {
     public partial class NewGame : Form
     {
-        
+        Player player;
+        ScoresContainer container;
         SoundPlayer simpleSound = new SoundPlayer(PlaneCrash.Properties.Resources.game);
         bool isPlaying;
-    
+
+
+        public string FolderPath { get; set; }
+        public string SerializationPath { get; set; }
+
         public MainHeroPlane HeroPlane { get; set; }
 
         public List<Enemies> enemies { get; set; } 
@@ -27,22 +36,22 @@ namespace PlaneCrash
         public int min { get; set; }
         public int sec { get; set; }
 
-
+        public List<int> scores { get; set; }
      
 
         public NewGame()
         {
-
-         
             InitializeComponent();
             this.DoubleBuffered = true;
-
+            scores = new List<int>();
             StartGame();
-
         }
 
         public void StartGame()
         {
+            player = new Player("Ana-Sara", 0);
+            container = new ScoresContainer();
+           
             FormBorderStyle = FormBorderStyle.None;
             WindowState = FormWindowState.Maximized;
             TopMost = true;
@@ -55,7 +64,7 @@ namespace PlaneCrash
             HeroPlane = new MainHeroPlane(MainHeroPlane.PHOTOS.upDown);
             enemies = new List<Enemies>();
             clouds = new List<Clouds>();
-          
+            
 
             timer1.Start();
             timerGame.Start();
@@ -64,6 +73,18 @@ namespace PlaneCrash
             fillEnemiesList();
            
             fillCloudList();
+
+            FolderPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "PlaneCrash");
+            if (!Directory.Exists(FolderPath))
+            {
+                Directory.CreateDirectory(FolderPath);
+            }
+
+            Console.WriteLine($"Folder Path: [{FolderPath}]");
+
+            SerializationPath = Path.Combine(FolderPath, "points.txt");
+            Console.WriteLine($"File path: [{SerializationPath}]");
+
         }
 
       
@@ -86,7 +107,23 @@ namespace PlaneCrash
                 clouds.Add(new Clouds(random.Next(900), -random.Next(1000), random.Next(1,3)));
             }
         }
+   
 
+        public void Serialization()
+        {
+            var myFile = new FileInfo(SerializationPath);
+            if(myFile.Exists)
+            {
+                myFile.Attributes &= ~FileAttributes.Hidden;
+            }
+            IFormatter formatter = new BinaryFormatter();
+            Stream stream = new FileStream(SerializationPath, FileMode.Create, FileAccess.Write);
+            formatter.Serialize(stream, container);
+            stream.Close();
+        }
+
+ 
+       
         public void MoveClouds()
         {
             for (int i = 0; i < clouds.Count; i++)
@@ -169,6 +206,13 @@ namespace PlaneCrash
                         (R1.Y < (R2.Y + R2.Height));
         }
 
+        public int calculateTime()
+        {
+            int totalSeconds = 0;
+            totalSeconds = min*60 + sec;
+
+            return totalSeconds;
+        }
        
 
         private void NewGame_KeyDown(object sender, KeyEventArgs e)
@@ -249,14 +293,21 @@ namespace PlaneCrash
         {
             timer1.Stop();
             timerGame.Stop();
+            scores.Add(calculateTime());
+            player.setScore(calculateTime());
+
+            container.addPlayer(player);
+            Serialization();
+
             if (MessageBox.Show("New game?","Game over", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 StartGame();
             }
-            else
+            else 
             {
                 this.Close();
             }
+            
         }
 
        
@@ -266,7 +317,7 @@ namespace PlaneCrash
 
             MoveEnemies();
             MoveClouds();
-           
+       
 
             lblLifes.Text = HeroPlane.life.ToString();
             
