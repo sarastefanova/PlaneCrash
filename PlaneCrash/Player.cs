@@ -11,11 +11,13 @@ namespace PlaneCrash
     {
         public string Nickname { get; set; }
         public int Score { get; set; }
+        public  string Country { get; set; }
 
-        public Player(string nickname, int score)
+        public Player(string nickname, int score,string c)
         {
             Nickname = nickname;
             Score = score;
+            Country = c;
         }
 
         public void setScore(int score)
@@ -30,7 +32,7 @@ namespace PlaneCrash
 
         public override string ToString()
         {
-            return string.Format("{0}:{1}", Nickname, Score);
+            return string.Format("Name: {0}, Contry: {1} : {2}", Nickname, Country, Score); ;
         }
     }
 }

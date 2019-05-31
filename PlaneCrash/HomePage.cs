@@ -24,8 +24,12 @@ namespace PlaneCrash
 
         private void BtnNewGame_Click_1(object sender, EventArgs e)
         {
-            NewGame newGame = new NewGame();
-            newGame.ShowDialog();
+           // NewGame newGame = new NewGame();
+           // newGame.ShowDialog();
+
+            NewPlayer newPlayer = new NewPlayer();
+            DialogResult dialog = newPlayer.ShowDialog();
+            
         }
 
         private void BtnInstructions_Click(object sender, EventArgs e)

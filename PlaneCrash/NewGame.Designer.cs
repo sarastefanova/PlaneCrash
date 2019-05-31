@@ -97,7 +97,7 @@
             this.lblTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTime.Location = new System.Drawing.Point(3, 43);
             this.lblTime.Name = "lblTime";
-            this.lblTime.Size = new System.Drawing.Size(0, 25);
+            this.lblTime.Size = new System.Drawing.Size(0, 20);
             this.lblTime.TabIndex = 4;
             // 
             // timerGame

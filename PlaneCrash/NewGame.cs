@@ -22,7 +22,7 @@ namespace PlaneCrash
         SoundPlayer simpleSound = new SoundPlayer(PlaneCrash.Properties.Resources.game);
         bool isPlaying;
 
-
+       
         public string FolderPath { get; set; }
         public string SerializationPath { get; set; }
 
@@ -37,22 +37,30 @@ namespace PlaneCrash
         public int sec { get; set; }
 
         public List<int> scores { get; set; }
-     
 
+        public bool Canstart { get; set; }
         public NewGame()
         {
             InitializeComponent();
             this.DoubleBuffered = true;
             scores = new List<int>();
-            StartGame();
+            Canstart = false;
+
+            player = NewPlayer.player;
+            
+                StartGame();
+            
+
+           
+    
         }
 
         public void StartGame()
         {
-            player = new Player("Ana-Sara", 0);
+            //player = new Player("Ana-Sara", 0);
             container = new ScoresContainer();
            
-            FormBorderStyle = FormBorderStyle.None;
+             FormBorderStyle = FormBorderStyle.None;
             WindowState = FormWindowState.Maximized;
             TopMost = true;
             min = 0;
@@ -85,6 +93,9 @@ namespace PlaneCrash
             SerializationPath = Path.Combine(FolderPath, "points.txt");
             Console.WriteLine($"File path: [{SerializationPath}]");
 
+            Deserialization();
+
+
         }
 
       
@@ -107,7 +118,20 @@ namespace PlaneCrash
                 clouds.Add(new Clouds(random.Next(900), -random.Next(1000), random.Next(1,3)));
             }
         }
-   
+
+
+        public void Deserialization()
+        {
+            var myFile = new FileInfo(SerializationPath);
+            if (!myFile.Exists)
+            {
+                return;
+            }
+            IFormatter formatter = new BinaryFormatter();
+            FileStream stream = new FileStream(SerializationPath, FileMode.Open, FileAccess.Read);
+            container = (ScoresContainer)formatter.Deserialize(stream);
+            stream.Close();
+        }
 
         public void Serialization()
         {
@@ -288,12 +312,19 @@ namespace PlaneCrash
             }
         }
 
+       
 
         public void GameOver()
         {
+            
             timer1.Stop();
             timerGame.Stop();
+
+
+            
+
             scores.Add(calculateTime());
+            
             player.setScore(calculateTime());
 
             container.addPlayer(player);
@@ -305,6 +336,7 @@ namespace PlaneCrash
             }
             else 
             {
+                
                 this.Close();
             }
             
@@ -314,12 +346,16 @@ namespace PlaneCrash
 
         private void Timer1_Tick(object sender, EventArgs e)
         {
+            
+                MoveEnemies();
+                MoveClouds();
 
-            MoveEnemies();
-            MoveClouds();
-       
 
-            lblLifes.Text = HeroPlane.life.ToString();
+                lblLifes.Text = HeroPlane.life.ToString();
+            
+               
+            
+           
             
             Invalidate(true);
         }

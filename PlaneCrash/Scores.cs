@@ -19,6 +19,8 @@ namespace PlaneCrash
         NewGame newGame;
         private ScoresContainer container { get; set; }
 
+        public List<Player> allPlayers { get; set; }
+
         public string FolderPath { get; set; }
         public string SerializationPath { get; set; }
 
@@ -26,6 +28,7 @@ namespace PlaneCrash
         {
             InitializeComponent();
             newGame = new NewGame();
+            allPlayers = new List<Player>();
 
             FolderPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "PlaneCrash");
 
@@ -49,9 +52,14 @@ namespace PlaneCrash
 
         private void Scores_Load(object sender, EventArgs e)
         {
+           
             Deserialization();
+           //allPlayers.Add(container.Players.ElementAt(0));
 
+            int j = 0;
+            container.SortScore();
             listBox1.DataSource = container.Players;
+            
 
         }
     }
