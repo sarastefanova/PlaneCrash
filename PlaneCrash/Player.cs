@@ -22,17 +22,15 @@ namespace PlaneCrash
 
         public void setScore(int score)
         {
-
             if(score > Score)
             {
                 Score = score;
             }
-
         }
 
         public override string ToString()
         {
-            return string.Format("Name: {0}, Contry: {1} : {2}", Nickname, Country, Score); ;
+            return string.Format("Name: {0}, Country: {1}, Score : {2}", Nickname, Country, Score); ;
         }
     }
 }

@@ -25,9 +25,9 @@ namespace PlaneCrash
             player = new Player(txtName.Text,0,txtCountry.Text);
 
             NewGame newGame = new NewGame();
+
             DialogResult dialog = newGame.ShowDialog();
             this.Close();
-
        
         }
 
@@ -50,5 +50,6 @@ namespace PlaneCrash
             }
 
         }
+
     }
 }

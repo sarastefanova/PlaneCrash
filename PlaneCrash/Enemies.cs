@@ -24,19 +24,18 @@ namespace PlaneCrash
             this.X = x;
             this.Y = y;
             speed = 15;
-            if(imgIndex == 1)
+
+            if (imgIndex == 1)
             {
                 enemy = PlaneCrash.Properties.Resources.enemyPlane1;
                 widthEnemy = PlaneCrash.Properties.Resources.enemyPlane1.Size.Width;
                 heightEnemy = PlaneCrash.Properties.Resources.enemyPlane1.Size.Height;
-
             }
             else if(imgIndex == 2)
             {
                 enemy = PlaneCrash.Properties.Resources.enemyPlane2;
                 widthEnemy = PlaneCrash.Properties.Resources.enemyPlane2.Size.Width;
                 heightEnemy = PlaneCrash.Properties.Resources.enemyPlane2.Size.Height;
-
             }
             else if(imgIndex == 3)
             {
@@ -66,6 +65,5 @@ namespace PlaneCrash
             }
             return false;
         }
-
     }
 }

@@ -2,8 +2,6 @@
 using System.Media;
 using System.Windows.Forms;
 
-
-
 namespace PlaneCrash
 {
     public partial class HomePage : Form
@@ -21,15 +19,10 @@ namespace PlaneCrash
 
         }
 
-
         private void BtnNewGame_Click_1(object sender, EventArgs e)
         {
-           // NewGame newGame = new NewGame();
-           // newGame.ShowDialog();
-
             NewPlayer newPlayer = new NewPlayer();
             DialogResult dialog = newPlayer.ShowDialog();
-            
         }
 
         private void BtnInstructions_Click(object sender, EventArgs e)
@@ -45,8 +38,6 @@ namespace PlaneCrash
                 Close();
             }
         }
-
-    
 
         private void Button1_Click(object sender, EventArgs e)
         {

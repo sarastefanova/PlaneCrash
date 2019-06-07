@@ -15,8 +15,6 @@ namespace PlaneCrash
         public HowToPlay()
         {
             InitializeComponent();
-        }
-
-     
+        }  
     }
 }

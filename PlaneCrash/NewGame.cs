@@ -17,12 +17,11 @@ namespace PlaneCrash
 {
     public partial class NewGame : Form
     {
-        Player player;
         ScoresContainer container;
         SoundPlayer simpleSound = new SoundPlayer(PlaneCrash.Properties.Resources.game);
-        bool isPlaying;
 
-       
+        Player player;
+
         public string FolderPath { get; set; }
         public string SerializationPath { get; set; }
 
@@ -31,38 +30,41 @@ namespace PlaneCrash
         public List<Enemies> enemies { get; set; } 
 
         public List<Clouds> clouds { get; set; }
+
         public bool isStarted { get; set; }
-        
+        public bool isPlaying { get; set; }
+
         public int min { get; set; }
         public int sec { get; set; }
 
         public List<int> scores { get; set; }
 
         public bool Canstart { get; set; }
+
         public NewGame()
         {
             InitializeComponent();
+
             this.DoubleBuffered = true;
+
             scores = new List<int>();
+
             Canstart = false;
 
             player = NewPlayer.player;
             
-                StartGame();
-            
-
-           
-    
+            StartGame();
+         
         }
 
         public void StartGame()
         {
-            //player = new Player("Ana-Sara", 0);
             container = new ScoresContainer();
            
-             FormBorderStyle = FormBorderStyle.None;
+            FormBorderStyle = FormBorderStyle.None;
             WindowState = FormWindowState.Maximized;
             TopMost = true;
+
             min = 0;
             sec = 0;
 
@@ -76,6 +78,7 @@ namespace PlaneCrash
 
             timer1.Start();
             timerGame.Start();
+
             isStarted = false;
 
             fillEnemiesList();
@@ -95,7 +98,6 @@ namespace PlaneCrash
 
             Deserialization();
 
-
         }
 
       
@@ -103,8 +105,7 @@ namespace PlaneCrash
         {
             Random r = new Random();
             for(int i=enemies.Count;i<10;i++)
-            {
-               
+            {         
                 enemies.Add(new Enemies(r.Next(this.ClientSize.Width), -r.Next(1000), r.Next(1, 4)));
             }
         }
@@ -114,39 +115,10 @@ namespace PlaneCrash
             Random random = new Random();
             for (int i = clouds.Count; i < 5; i++)
             {
-
                 clouds.Add(new Clouds(random.Next(900), -random.Next(1000), random.Next(1,3)));
             }
         }
 
-
-        public void Deserialization()
-        {
-            var myFile = new FileInfo(SerializationPath);
-            if (!myFile.Exists)
-            {
-                return;
-            }
-            IFormatter formatter = new BinaryFormatter();
-            FileStream stream = new FileStream(SerializationPath, FileMode.Open, FileAccess.Read);
-            container = (ScoresContainer)formatter.Deserialize(stream);
-            stream.Close();
-        }
-
-        public void Serialization()
-        {
-            var myFile = new FileInfo(SerializationPath);
-            if(myFile.Exists)
-            {
-                myFile.Attributes &= ~FileAttributes.Hidden;
-            }
-            IFormatter formatter = new BinaryFormatter();
-            Stream stream = new FileStream(SerializationPath, FileMode.Create, FileAccess.Write);
-            formatter.Serialize(stream, container);
-            stream.Close();
-        }
-
- 
        
         public void MoveClouds()
         {
@@ -230,6 +202,7 @@ namespace PlaneCrash
                         (R1.Y < (R2.Y + R2.Height));
         }
 
+
         public int calculateTime()
         {
             int totalSeconds = 0;
@@ -237,7 +210,57 @@ namespace PlaneCrash
 
             return totalSeconds;
         }
-       
+
+        public void Serialization()
+        {
+            var myFile = new FileInfo(SerializationPath);
+            if (myFile.Exists)
+            {
+                myFile.Attributes &= ~FileAttributes.Hidden;
+            }
+            IFormatter formatter = new BinaryFormatter();
+            Stream stream = new FileStream(SerializationPath, FileMode.Create, FileAccess.Write);
+            formatter.Serialize(stream, container);
+            stream.Close();
+        }
+
+        public void Deserialization()
+        {
+            var myFile = new FileInfo(SerializationPath);
+            if (!myFile.Exists)
+            {
+                return;
+            }
+            IFormatter formatter = new BinaryFormatter();
+            FileStream stream = new FileStream(SerializationPath, FileMode.Open, FileAccess.Read);
+            container = (ScoresContainer)formatter.Deserialize(stream);
+            stream.Close();
+        }
+
+        public void GameOver()
+        {
+            
+            timer1.Stop();
+            timerGame.Stop();            
+
+            scores.Add(calculateTime());
+            
+            player.setScore(calculateTime());
+
+            container.addPlayer(player);
+            Serialization();
+
+            if (MessageBox.Show("New game?","Game over", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                StartGame();
+            }
+            else 
+            {
+                
+                this.Close();
+            }
+            
+        }
 
         private void NewGame_KeyDown(object sender, KeyEventArgs e)
         {
@@ -245,7 +268,7 @@ namespace PlaneCrash
             {
                 simpleSound.Stop();
                 this.Close();
-                
+
             }
 
 
@@ -285,15 +308,15 @@ namespace PlaneCrash
 
                 if (isStarted)
                 {
-                    
+
                     timer1.Stop();
-                  
+
                 }
                 else
                 {
-                    
+
                     timer1.Start();
-                  
+
                 }
             }
         }
@@ -312,50 +335,14 @@ namespace PlaneCrash
             }
         }
 
-       
 
-        public void GameOver()
-        {
-            
-            timer1.Stop();
-            timerGame.Stop();
-
-
-            
-
-            scores.Add(calculateTime());
-            
-            player.setScore(calculateTime());
-
-            container.addPlayer(player);
-            Serialization();
-
-            if (MessageBox.Show("New game?","Game over", MessageBoxButtons.YesNo) == DialogResult.Yes)
-            {
-                StartGame();
-            }
-            else 
-            {
-                
-                this.Close();
-            }
-            
-        }
-
-       
 
         private void Timer1_Tick(object sender, EventArgs e)
         {
-            
-                MoveEnemies();
-                MoveClouds();
+            MoveEnemies();
+            MoveClouds();
 
-
-                lblLifes.Text = HeroPlane.life.ToString();
-            
-               
-            
-           
+            lblLifes.Text = HeroPlane.life.ToString();               
             
             Invalidate(true);
         }

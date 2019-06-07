@@ -10,14 +10,10 @@ namespace PlaneCrash
     public class Clouds
     {
         public Image cloud;
-
         public int X { get; set; }
         public int Y { get; set; }
-
         public int speed { get; set; }
        
-       
-
         public Clouds(int x, int y,int imgIndex)
         {
             this.X = x;
@@ -27,16 +23,11 @@ namespace PlaneCrash
             if (imgIndex == 1)
             {
                 cloud = PlaneCrash.Properties.Resources.cloud1;
-                
-
             }
             else if (imgIndex == 2)
             {
                 cloud = PlaneCrash.Properties.Resources.cloud2;
-               
-
             }
-
         }
 
         public void Draw(Graphics g)

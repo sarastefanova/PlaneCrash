@@ -36,6 +36,7 @@
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.button1 = new System.Windows.Forms.Button();
             this.btnScores = new System.Windows.Forms.Button();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // btnNewGame
@@ -46,7 +47,7 @@
             this.btnNewGame.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnNewGame.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btnNewGame.Location = new System.Drawing.Point(518, 266);
-            this.btnNewGame.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnNewGame.Margin = new System.Windows.Forms.Padding(2);
             this.btnNewGame.Name = "btnNewGame";
             this.btnNewGame.Size = new System.Drawing.Size(98, 26);
             this.btnNewGame.TabIndex = 3;
@@ -61,8 +62,8 @@
             this.btnInstructions.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnInstructions.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnInstructions.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnInstructions.Location = new System.Drawing.Point(518, 297);
-            this.btnInstructions.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnInstructions.Location = new System.Drawing.Point(518, 328);
+            this.btnInstructions.Margin = new System.Windows.Forms.Padding(2);
             this.btnInstructions.Name = "btnInstructions";
             this.btnInstructions.Size = new System.Drawing.Size(98, 26);
             this.btnInstructions.TabIndex = 4;
@@ -77,8 +78,8 @@
             this.btnQuit.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnQuit.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnQuit.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnQuit.Location = new System.Drawing.Point(518, 327);
-            this.btnQuit.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnQuit.Location = new System.Drawing.Point(518, 358);
+            this.btnQuit.Margin = new System.Windows.Forms.Padding(2);
             this.btnQuit.Name = "btnQuit";
             this.btnQuit.Size = new System.Drawing.Size(98, 26);
             this.btnQuit.TabIndex = 5;
@@ -105,7 +106,7 @@
             this.button1.ImageIndex = 1;
             this.button1.ImageList = this.imageList1;
             this.button1.Location = new System.Drawing.Point(-1, 353);
-            this.button1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button1.Margin = new System.Windows.Forms.Padding(2);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(37, 37);
             this.button1.TabIndex = 6;
@@ -119,7 +120,7 @@
             this.btnScores.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnScores.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnScores.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnScores.Location = new System.Drawing.Point(518, 357);
+            this.btnScores.Location = new System.Drawing.Point(518, 296);
             this.btnScores.Margin = new System.Windows.Forms.Padding(2);
             this.btnScores.Name = "btnScores";
             this.btnScores.Size = new System.Drawing.Size(98, 26);
@@ -140,7 +141,7 @@
             this.Controls.Add(this.btnInstructions);
             this.Controls.Add(this.btnNewGame);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximizeBox = false;
             this.Name = "HomePage";
             this.Text = "PlaneCrash";
@@ -157,6 +158,7 @@
         private System.Windows.Forms.ImageList imageList1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button btnScores;
+        private System.Windows.Forms.Timer timer1;
     }
 }
 

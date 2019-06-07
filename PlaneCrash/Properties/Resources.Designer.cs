@@ -201,6 +201,16 @@ namespace PlaneCrash.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap picture {
+            get {
+                object obj = ResourceManager.GetObject("picture", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Plane {
             get {
                 object obj = ResourceManager.GetObject("Plane", resourceCulture);
@@ -224,6 +234,16 @@ namespace PlaneCrash.Properties {
         internal static System.Drawing.Bitmap sky {
             get {
                 object obj = ResourceManager.GetObject("sky", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap SKYY {
+            get {
+                object obj = ResourceManager.GetObject("SKYY", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

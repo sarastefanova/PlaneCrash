@@ -18,6 +18,7 @@ namespace PlaneCrash
         {
             upDown,left,right
         }
+
         public int X { get; set; }
         public int Y { get; set; }
         public int life { get; set; }
@@ -31,7 +32,8 @@ namespace PlaneCrash
 
         public PHOTOS photos { get; set; }
         public DIRECTION d { get; set; }
-        public int brzina;
+
+        public int speed;
 
         public MainHeroPlane(PHOTOS photo)
         {
@@ -51,7 +53,8 @@ namespace PlaneCrash
             GameOver = false;
             widthHero = PlaneCrash.Properties.Resources.Plane.Size.Width;
             heightHero = PlaneCrash.Properties.Resources.Plane.Size.Height;
-            brzina = 10;
+
+            speed = 10;
         }
 
         public void Draw(Graphics g)
@@ -81,34 +84,34 @@ namespace PlaneCrash
 
             if (d == DIRECTION.left)
             {
-                if (X -brzina > 0)
+                if (X - speed > 0)
                 {
-                    X -= brzina;
+                    X -= speed;
                 }
             }
 
             if (d == DIRECTION.right)
             {
-                if (X + brzina < width)
+                if (X + speed < width)
                 {
-                    X += brzina;
+                    X += speed;
                 }
             }
 
             if (d == DIRECTION.up)
             {
-                if (Y - brzina > 0)
+                if (Y - speed > 0)
                 {
-                    Y -= brzina;
+                    Y -= speed;
                 }
 
             }
 
             if (d == DIRECTION.down)
             {
-                if (Y + brzina < height-15)
+                if (Y + speed < height-15)
                 {
-                    Y += brzina;
+                    Y += speed;
                 }
             }
         }
